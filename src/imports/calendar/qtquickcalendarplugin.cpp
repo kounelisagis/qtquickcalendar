@@ -51,20 +51,13 @@ QtQuickCalendarPlugin::QtQuickCalendarPlugin(QObject *parent) : QQmlExtensionPlu
 {
 }
 
-static QObject *calendarSingleton(QQmlEngine *engine, QJSEngine *scriptEngine)
-{
-    Q_UNUSED(engine);
-    Q_UNUSED(scriptEngine);
-    return new QQuickCalendar;
-}
-
 void QtQuickCalendarPlugin::registerTypes(const char *uri)
 {
     qmlRegisterType<QQuickDayOfWeekRow>(uri, 1, 0, "AbstractDayOfWeekRow");
     qmlRegisterType<QQuickMonthGrid>(uri, 1, 0, "AbstractMonthGrid");
     qmlRegisterType<QQuickWeekNumberColumn>(uri, 1, 0, "AbstractWeekNumberColumn");
     qmlRegisterType<QQuickCalendarModel>(uri, 1, 0, "CalendarModel");
-    qmlRegisterSingletonType<QQuickCalendar>(uri, 1, 0, "Calendar", calendarSingleton);
+    qmlRegisterType<QQuickCalendar>(uri, 1, 0, "Calendar");
 }
 
 QT_END_NAMESPACE

@@ -69,6 +69,10 @@ public:
         December
     };
     Q_ENUM(Month)
+
+private:
+    Q_DISABLE_COPY(QQuickCalendar)
+
 };
 
 QT_END_NAMESPACE

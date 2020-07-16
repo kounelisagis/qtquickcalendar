@@ -1,7 +1,8 @@
 QML_FILES = \
     DayOfWeekRow.qml \
     MonthGrid.qml \
-    WeekNumberColumn.qml
+    WeekNumberColumn.qml \
+    Calendar.qml
 
 HEADERS += \
     $$PWD/qquickcalendar_p.h \
