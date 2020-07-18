@@ -52,7 +52,6 @@ import QtQuick 2.15
 import QtQuick.Calendar 1.0
 import QtQuick.Controls 2.15
 import QtQuick.Controls.Material 2.15
-import QtQuick.Controls 1.4
 
 import App 1.0
 
@@ -78,10 +77,9 @@ ApplicationWindow {
 //        }
 //    }
 
-    Calendar {
-        width: 800
-        height: 600
 
+    Calendar {
+        Component.onCompleted: print(width, height)
     }
 
 }

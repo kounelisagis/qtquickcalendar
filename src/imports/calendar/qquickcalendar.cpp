@@ -46,8 +46,10 @@ QT_BEGIN_NAMESPACE
     \sa MonthGrid, DayOfWeekRow, WeekNumberColumn
 */
 
-QQuickCalendar::QQuickCalendar(QObject *parent) : QObject(parent)
+QQuickCalendar::QQuickCalendar(QQuickItem *parent) : QQuickItem(parent)
 {
+    setWidth(599);
+    setHeight(500);
 }
 
 QT_END_NAMESPACE

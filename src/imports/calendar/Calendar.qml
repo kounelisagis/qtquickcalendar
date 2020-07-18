@@ -31,28 +31,27 @@ import QtQuick 2.15
 import QtQuick.Calendar 1.0
 import QtQuick.Layouts 1.15
 
-
 import QtQuick.Controls 2.15
 import QtQuick.Controls.Material 2.15
-import QtQuick.Controls 1.4
 
 
-Calendar {
+AbstractCalendar {
     id: control
 
-    visible: true
-
-    required property EventDatabase eventDatabase
+//    required property EventDatabase eventDatabase
 
     readonly property date currentDate: new Date()
 
-    header: ToolBar {
-        Label {
-            text: window.currentDate.toLocaleString(locale, "MMMM yyyy")
-            font.pixelSize: Qt.application.font.pixelSize * 1.25
-            anchors.centerIn: parent
-        }
-    }
+//    header: ToolBar {
+//        Label {
+//            text: window.currentDate.toLocaleString(locale, "MMMM yyyy")
+//            font.pixelSize: Qt.application.font.pixelSize * 1.25
+//            anchors.centerIn: parent
+//        }
+//    }
+
+//  used for debugging
+    Component.onCompleted: print(width, height);
 
     GridLayout {
         anchors.fill: parent
@@ -93,11 +92,11 @@ Calendar {
             Layout.fillWidth: true
             Layout.fillHeight: true
 
-            delegate: MonthGridDelegate {
-                id: gridDelegate
-                visibleMonth: grid.month
-                eventDatabase: window.eventDatabase
-            }
+//            delegate: MonthGridDelegate {
+//                id: gridDelegate
+//                visibleMonth: grid.month
+//                eventDatabase: window.eventDatabase
+//            }
 
             background: Item {
                 x: grid.leftPadding

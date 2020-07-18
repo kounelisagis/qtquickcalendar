@@ -57,7 +57,7 @@ void QtQuickCalendarPlugin::registerTypes(const char *uri)
     qmlRegisterType<QQuickMonthGrid>(uri, 1, 0, "AbstractMonthGrid");
     qmlRegisterType<QQuickWeekNumberColumn>(uri, 1, 0, "AbstractWeekNumberColumn");
     qmlRegisterType<QQuickCalendarModel>(uri, 1, 0, "CalendarModel");
-    qmlRegisterType<QQuickCalendar>(uri, 1, 0, "Calendar");
+    qmlRegisterType<QQuickCalendar>(uri, 1, 0, "AbstractCalendar");
 }
 
 QT_END_NAMESPACE

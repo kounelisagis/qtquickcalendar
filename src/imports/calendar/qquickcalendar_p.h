@@ -44,15 +44,16 @@
 #include <QtCore/qobject.h>
 #include <QtCore/qdatetime.h>
 #include <QtQml/qqml.h>
+#include <QtQuickTemplates2/private/qquickcontrol_p.h>
 
 QT_BEGIN_NAMESPACE
 
-class QQuickCalendar : public QObject
+class QQuickCalendar : public QQuickItem
 {
     Q_OBJECT
 
 public:
-    explicit QQuickCalendar(QObject *parent = nullptr);
+    explicit QQuickCalendar(QQuickItem *parent = nullptr);
 
     enum Month {
         January,
