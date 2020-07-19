@@ -48,7 +48,10 @@
 
 QT_BEGIN_NAMESPACE
 
-class QQuickCalendar : public QQuickItem
+class QQuickCalendarPrivate;
+
+
+class QQuickCalendar : public QQuickControl
 {
     Q_OBJECT
 
@@ -71,8 +74,18 @@ public:
     };
     Q_ENUM(Month)
 
+protected:
+    void componentComplete() override;
+    void geometryChanged(const QRectF &newGeometry, const QRectF &oldGeometry) override;
+    void paddingChange(const QMarginsF &newPadding, const QMarginsF &oldPadding) override;
+    void updatePolish() override;
+
+//    void timerEvent(QTimerEvent *event) override;
+
+
 private:
     Q_DISABLE_COPY(QQuickCalendar)
+    Q_DECLARE_PRIVATE(QQuickCalendar)
 
 };
 

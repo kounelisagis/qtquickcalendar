@@ -57,8 +57,9 @@ import App 1.0
 
 ApplicationWindow {
     id: window
-    width: 800
-    height: 600
+    width: calendar.width
+    height: calendar.height
+
     title: qsTr("Event Calendar")
     visible: true
 
@@ -69,16 +70,10 @@ ApplicationWindow {
 //    header: TabBar {
 //        // ...
 //    }
-//    header: ToolBar {
-//        Label {
-//            text: window.currentDate.toLocaleString(locale, "MMMM yyyy")
-//            font.pixelSize: Qt.application.font.pixelSize * 1.25
-//            anchors.centerIn: parent
-//        }
-//    }
 
 
     Calendar {
+        id: calendar
         Component.onCompleted: print(width, height)
     }
 

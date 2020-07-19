@@ -34,107 +34,111 @@ import QtQuick.Layouts 1.15
 import QtQuick.Controls 2.15
 import QtQuick.Controls.Material 2.15
 
-
 AbstractCalendar {
     id: control
 
-//    required property EventDatabase eventDatabase
+    implicitWidth: 1000
+    implicitHeight: 700
 
     readonly property date currentDate: new Date()
 
-//    header: ToolBar {
-//        Label {
-//            text: window.currentDate.toLocaleString(locale, "MMMM yyyy")
-//            font.pixelSize: Qt.application.font.pixelSize * 1.25
-//            anchors.centerIn: parent
-//        }
-//    }
 
-//  used for debugging
-    Component.onCompleted: print(width, height);
+    ColumnLayout {
+        spacing: 2
+        width: parent.width
+        height: parent.height
 
-    GridLayout {
-        anchors.fill: parent
-        columns: 2
-
-        DayOfWeekRow {
-            id: dayOfWeekRow
-            locale: grid.locale
-            font.bold: false
-            delegate: Label {
-                text: model.shortName
-                font: dayOfWeekRow.font
+        Rectangle {
+            Layout.alignment: Qt.AlignHCenter
+            width: parent.width
+            height: childrenRect.height
+            color: "steelblue"
+            Label {
                 horizontalAlignment: Text.AlignHCenter
-                verticalAlignment: Text.AlignVCenter
+
+                padding: 10
+                text: window.currentDate.toLocaleString(locale, "MMMM yyyy")
+                font.pixelSize: Qt.application.font.pixelSize * 1.25
+                width: parent.width
             }
-
-            Layout.column: 1
-            Layout.fillWidth: true
         }
 
-        WeekNumberColumn {
-            month: grid.month
-            year: grid.year
-            locale: grid.locale
-            font.bold: false
 
-            Layout.fillHeight: true
-        }
+        GridLayout {
+            columns: 2
 
-        MonthGrid {
-            id: grid
-            month: window.currentDate.getMonth()
-            year: window.currentDate.getFullYear()
-            spacing: 0
-
-            readonly property int gridLineThickness: 1
-
-            Layout.fillWidth: true
-            Layout.fillHeight: true
-
-//            delegate: MonthGridDelegate {
-//                id: gridDelegate
-//                visibleMonth: grid.month
-//                eventDatabase: window.eventDatabase
-//            }
-
-            background: Item {
-                x: grid.leftPadding
-                y: grid.topPadding
-                width: grid.availableWidth
-                height: grid.availableHeight
-
-                // Vertical lines
-                Row {
-                    spacing: (parent.width - (grid.gridLineThickness * rowRepeater.model)) / rowRepeater.model
-
-                    Repeater {
-                        id: rowRepeater
-                        model: 7
-                        delegate: Rectangle {
-                            width: 1
-                            height: grid.height
-                            color: "#ccc"
-                        }
-                    }
+            DayOfWeekRow {
+                id: dayOfWeekRow
+                locale: grid.locale
+                font.bold: false
+                delegate: Label {
+                    text: model.shortName
+                    font: dayOfWeekRow.font
+                    horizontalAlignment: Text.AlignHCenter
+                    verticalAlignment: Text.AlignVCenter
                 }
 
-                // Horizontal lines
-                Column {
-                    spacing: (parent.height - (grid.gridLineThickness * columnRepeater.model)) / columnRepeater.model
+                Layout.column: 1
+                Layout.fillWidth: true
+            }
 
-                    Repeater {
-                        id: columnRepeater
-                        model: 6
-                        delegate: Rectangle {
-                            width: grid.width
-                            height: 1
-                            color: "#ccc"
+            WeekNumberColumn {
+                month: grid.month
+                year: grid.year
+                locale: grid.locale
+                font.bold: false
+
+                Layout.fillHeight: true
+            }
+
+            MonthGrid {
+                id: grid
+                month: window.currentDate.getMonth()
+                year: window.currentDate.getFullYear()
+                spacing: 0
+
+                readonly property int gridLineThickness: 1
+
+                Layout.fillWidth: true
+                Layout.fillHeight: true
+
+                background: Item {
+                    x: grid.leftPadding
+                    y: grid.topPadding
+                    width: grid.availableWidth
+                    height: grid.availableHeight
+
+                    // Vertical lines
+                    Row {
+                        spacing: (parent.width - (grid.gridLineThickness * rowRepeater.model)) / rowRepeater.model
+
+                        Repeater {
+                            id: rowRepeater
+                            model: 7
+                            delegate: Rectangle {
+                                width: 1
+                                height: grid.height
+                                color: "#ccc"
+                            }
+                        }
+                    }
+
+                    // Horizontal lines
+                    Column {
+                        spacing: (parent.height - (grid.gridLineThickness * columnRepeater.model)) / columnRepeater.model
+
+                        Repeater {
+                            id: columnRepeater
+                            model: 6
+                            delegate: Rectangle {
+                                width: grid.width
+                                height: 1
+                                color: "#ccc"
+                            }
                         }
                     }
                 }
             }
         }
     }
-
 }
