@@ -57,8 +57,9 @@ import App 1.0
 
 ApplicationWindow {
     id: window
-    width: calendar.width
-    height: calendar.height
+
+    width: 1000
+    height: 700
 
     title: qsTr("Event Calendar")
     visible: true

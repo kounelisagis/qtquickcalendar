@@ -37,8 +37,8 @@ import QtQuick.Controls.Material 2.15
 AbstractCalendar {
     id: control
 
-    implicitWidth: 1000
-    implicitHeight: 700
+    width: window.width
+    height: window.height
 
     readonly property date currentDate: new Date()
 
@@ -61,6 +61,8 @@ AbstractCalendar {
                 font.pixelSize: Qt.application.font.pixelSize * 1.25
                 width: parent.width
             }
+
+            Layout.fillWidth: true
         }
 
 

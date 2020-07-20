@@ -143,7 +143,8 @@ QQuickCalendar::QQuickCalendar(QQuickItem *parent) :
 
 void QQuickCalendar::componentComplete()
 {
-    qDebug() << "TESSTT"; //gives 0,0
+    qDebug() << "COMPONENT COMPLETED";
+
     Q_D(QQuickCalendar);
     QQuickControl::componentComplete();
     if (d->contentItem) {
@@ -159,6 +160,8 @@ void QQuickCalendar::componentComplete()
 
 void QQuickCalendar::geometryChanged(const QRectF &newGeometry, const QRectF &oldGeometry)
 {
+    qDebug() << "GEOMETRY CHANGED";
+
     Q_D(QQuickCalendar);
     QQuickControl::geometryChanged(newGeometry, oldGeometry);
     if (isComponentComplete())
