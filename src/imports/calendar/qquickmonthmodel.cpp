@@ -47,12 +47,14 @@ public:
     QQuickMonthModelPrivate() : dates(daysOnACalendarMonth)
     {
         today = QDate::currentDate();
+        day = today.day();
         month = today.month();
         year = today.year();
     }
 
     bool populate(int month, int year, const QLocale &locale, bool force = false);
 
+    int day;
     int month;
     int year;
     QString title;
@@ -90,6 +92,22 @@ QQuickMonthModel::QQuickMonthModel(QObject *parent) :
 {
     Q_D(QQuickMonthModel);
     d->populate(d->month, d->year, d->locale, true);
+}
+
+
+int QQuickMonthModel::day() const
+{
+    Q_D(const QQuickMonthModel);
+    return d->day;
+}
+
+void QQuickMonthModel::setDay(int day)
+{
+    Q_D(QQuickMonthModel);
+    if (d->day != day) {
+        d->day = day;
+        emit dayChanged();
+    }
 }
 
 int QQuickMonthModel::month() const

@@ -228,10 +228,39 @@ QQuickMonthGrid::QQuickMonthGrid(QQuickItem *parent) :
 
     d->model = new QQuickMonthModel(this);
     d->source = QVariant::fromValue(d->model);
+    connect(d->model, &QQuickMonthModel::dayChanged, this, &QQuickMonthGrid::dayChanged);
     connect(d->model, &QQuickMonthModel::monthChanged, this, &QQuickMonthGrid::monthChanged);
     connect(d->model, &QQuickMonthModel::yearChanged, this, &QQuickMonthGrid::yearChanged);
     connect(d->model, &QQuickMonthModel::titleChanged, this, &QQuickMonthGrid::titleChanged);
 }
+
+/*!
+    \qmlproperty int QtQuick.Calendar::MonthGrid::day
+
+    This property holds the number of the day. The default value is the
+    current day.
+
+    \include one-based-days.qdocinc
+
+    \sa Calendar
+*/
+
+int QQuickMonthGrid::day() const
+{
+    Q_D(const QQuickMonthGrid);
+    return d->model->day();
+}
+
+void QQuickMonthGrid::setDay(int day)
+{
+    Q_D(QQuickMonthGrid);
+    if (day < 1 || day > 31) {
+        qmlWarning(this) << "day " << day << " is out of range [1...31]";
+        return;
+    }
+    d->model->setDay(day);
+}
+
 
 /*!
     \qmlproperty int QtQuick.Calendar::MonthGrid::month

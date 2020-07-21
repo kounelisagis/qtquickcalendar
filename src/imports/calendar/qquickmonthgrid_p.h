@@ -51,6 +51,7 @@ class QQuickMonthGridPrivate;
 class QQuickMonthGrid : public QQuickControl
 {
     Q_OBJECT
+    Q_PROPERTY(int day READ day WRITE setDay NOTIFY dayChanged FINAL)
     Q_PROPERTY(int month READ month WRITE setMonth NOTIFY monthChanged FINAL)
     Q_PROPERTY(int year READ year WRITE setYear NOTIFY yearChanged FINAL)
     Q_PROPERTY(QVariant source READ source WRITE setSource NOTIFY sourceChanged FINAL)
@@ -59,6 +60,9 @@ class QQuickMonthGrid : public QQuickControl
 
 public:
     explicit QQuickMonthGrid(QQuickItem *parent = nullptr);
+
+    int day() const;
+    void setDay(int day);
 
     int month() const;
     void setMonth(int month);
@@ -76,6 +80,7 @@ public:
     void setDelegate(QQmlComponent *delegate);
 
 Q_SIGNALS:
+    void dayChanged();
     void monthChanged();
     void yearChanged();
     void sourceChanged();

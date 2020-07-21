@@ -46,7 +46,8 @@ AbstractMonthGrid {
         verticalAlignment: Text.AlignVCenter
         opacity: model.month === control.month ? 1 : 0
         text: model.day
-        font: control.font
+        font.family: control.font.family
+        font.bold : model.day === control.day ? true : false
     }
     //! [delegate]
 

@@ -95,8 +95,7 @@ AbstractCalendar {
 
             MonthGrid {
                 id: grid
-                month: window.currentDate.getMonth()
-                year: window.currentDate.getFullYear()
+                
                 spacing: 0
 
                 readonly property int gridLineThickness: 1

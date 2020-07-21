@@ -53,6 +53,7 @@ class QQuickMonthModelPrivate;
 class QQuickMonthModel : public QAbstractListModel
 {
     Q_OBJECT
+    Q_PROPERTY(int day READ day WRITE setDay NOTIFY dayChanged FINAL)
     Q_PROPERTY(int month READ month WRITE setMonth NOTIFY monthChanged FINAL)
     Q_PROPERTY(int year READ year WRITE setYear NOTIFY yearChanged FINAL)
     Q_PROPERTY(QLocale locale READ locale WRITE setLocale NOTIFY localeChanged FINAL)
@@ -61,6 +62,9 @@ class QQuickMonthModel : public QAbstractListModel
 
 public:
     explicit QQuickMonthModel(QObject *parent = nullptr);
+
+    int day() const;
+    void setDay(int day);
 
     int month() const;
     void setMonth(int month);
@@ -91,6 +95,7 @@ public:
     int rowCount(const QModelIndex &parent = QModelIndex()) const override;
 
 Q_SIGNALS:
+    void dayChanged();
     void monthChanged();
     void yearChanged();
     void localeChanged();
