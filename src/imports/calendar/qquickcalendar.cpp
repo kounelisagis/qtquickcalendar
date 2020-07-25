@@ -54,37 +54,16 @@ class QQuickCalendarPrivate : public QQuickControlPrivate
     Q_DECLARE_PUBLIC(QQuickCalendar)
 
 public:
-//    QQuickCalendarPrivate() : pressTimer(0), pressedItem(nullptr), model(nullptr), delegate(nullptr) { }
-
     void resizeItems();
-
-//    QQuickItem *cellAt(const QPointF &pos) const;
-//    QDate dateOf(QQuickItem *cell) const;
-
-//    void updatePress(const QPointF &pos);
-//    void clearPress(bool clicked);
-
-//    void handlePress(const QPointF &point) override;
-//    void handleMove(const QPointF &point) override;
-//    void handleRelease(const QPointF &point) override;
-//    void handleUngrab() override;
 
     static void setContextProperty(QQuickItem *item, const QString &name, const QVariant &value);
 
-//    QString title;
     QVariant source;
-//    QDate pressedDate;
-//    int pressTimer;
-//    QQuickItem *pressedItem;
     QQuickCalendarModel *model;
-//    QQmlComponent *delegate;
-
 };
 
 void QQuickCalendarPrivate::resizeItems()
 {
-    qDebug() << "RESIZED";
-
     if (!contentItem)
         return;
 
@@ -124,27 +103,12 @@ QQuickCalendar::QQuickCalendar(QQuickItem *parent) :
 
     d->model = new QQuickCalendarModel(this);
     d->source = QVariant::fromValue(d->model);
-//    connect(d->model, &QQuickMonthModel::monthChanged, this, &QQuickMonthGrid::monthChanged);
-//    connect(d->model, &QQuickMonthModel::yearChanged, this, &QQuickMonthGrid::yearChanged);
-//    connect(d->model, &QQuickMonthModel::titleChanged, this, &QQuickMonthGrid::titleChanged);
-
 }
 
 
 
-
-
-//QQuickCalendar::QQuickCalendar()
-//{
-//    setWidth(599);
-//    setHeight(500);
-//}
-
-
 void QQuickCalendar::componentComplete()
 {
-    qDebug() << "COMPONENT COMPLETED";
-
     Q_D(QQuickCalendar);
     QQuickControl::componentComplete();
     if (d->contentItem) {
@@ -160,20 +124,11 @@ void QQuickCalendar::componentComplete()
 
 void QQuickCalendar::geometryChanged(const QRectF &newGeometry, const QRectF &oldGeometry)
 {
-    qDebug() << "GEOMETRY CHANGED";
-
     Q_D(QQuickCalendar);
     QQuickControl::geometryChanged(newGeometry, oldGeometry);
     if (isComponentComplete())
         d->resizeItems();
 }
-
-//void QQuickCalendar::localeChange(const QLocale &newLocale, const QLocale &oldLocale)
-//{
-//    Q_D(QQuickMonthGrid);
-//    QQuickControl::localeChange(newLocale, oldLocale);
-//    d->model->setLocale(newLocale);
-//}
 
 void QQuickCalendar::paddingChange(const QMarginsF &newPadding, const QMarginsF &oldPadding)
 {
@@ -189,17 +144,6 @@ void QQuickCalendar::updatePolish()
     QQuickControl::updatePolish();
     d->resizeItems();
 }
-
-//void QQuickCalendar::timerEvent(QTimerEvent *event)
-//{
-//    Q_D(QQuickMonthGrid);
-//    if (event->timerId() == d->pressTimer) {
-//        if (d->pressedDate.isValid())
-//            emit pressAndHold(d->pressedDate);
-//        killTimer(d->pressTimer);
-//    }
-//}
-
 
 
 QT_END_NAMESPACE
