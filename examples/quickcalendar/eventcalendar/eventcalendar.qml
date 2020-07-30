@@ -64,13 +64,7 @@ ApplicationWindow {
     title: qsTr("Event Calendar")
     visible: true
 
-    required property EventDatabase eventDatabase
-
     readonly property date currentDate: new Date()
-
-//    header: TabBar {
-//        // ...
-//    }
 
 
     Calendar {

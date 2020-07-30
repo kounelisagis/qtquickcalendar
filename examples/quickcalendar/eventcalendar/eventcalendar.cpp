@@ -52,7 +52,6 @@
 #include <QQmlApplicationEngine>
 #include <QIcon>
 
-#include "sqleventdatabase.h"
 
 int main(int argc, char *argv[])
 {
@@ -67,8 +66,6 @@ int main(int argc, char *argv[])
     QIcon::setThemeName("eventcalendar");
 
     QQmlApplicationEngine engine;
-    SqlEventDatabase eventDatabase;
-    engine.setInitialProperties({{ "eventDatabase", QVariant::fromValue(&eventDatabase) }});
 
     const QUrl url(QStringLiteral("qrc:/eventcalendar.qml"));
     QObject::connect(&engine, &QQmlApplicationEngine::objectCreated,
