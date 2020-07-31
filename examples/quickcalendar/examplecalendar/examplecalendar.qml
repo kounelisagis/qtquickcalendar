@@ -53,7 +53,6 @@ import QtQuick.Calendar 1.0
 import QtQuick.Controls 2.15
 import QtQuick.Controls.Material 2.15
 
-import App 1.0
 
 ApplicationWindow {
     id: window
@@ -61,7 +60,7 @@ ApplicationWindow {
     width: 1000
     height: 700
 
-    title: qsTr("Event Calendar")
+    title: qsTr("Example Calendar")
     visible: true
 
     readonly property date currentDate: new Date()

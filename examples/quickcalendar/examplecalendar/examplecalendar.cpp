@@ -63,11 +63,11 @@ int main(int argc, char *argv[])
     }
     QGuiApplication app(argc, argv);
 
-    QIcon::setThemeName("eventcalendar");
+    QIcon::setThemeName("examplecalendar");
 
     QQmlApplicationEngine engine;
 
-    const QUrl url(QStringLiteral("qrc:/eventcalendar.qml"));
+    const QUrl url(QStringLiteral("qrc:/examplecalendar.qml"));
     QObject::connect(&engine, &QQmlApplicationEngine::objectCreated,
                      &app, [url](QObject *obj, const QUrl &objUrl) {
         if (!obj && url == objUrl)

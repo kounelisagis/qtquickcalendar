@@ -1,2 +1,2 @@
 TEMPLATE = subdirs
-SUBDIRS += eventcalendar
+SUBDIRS += examplecalendar
