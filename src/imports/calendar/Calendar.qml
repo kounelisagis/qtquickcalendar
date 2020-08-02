@@ -37,11 +37,7 @@ import QtQuick.Controls.Material 2.15
 AbstractCalendar {
     id: control
 
-    width: window.width
-    height: window.height
-
-    readonly property date currentDate: new Date()
-
+    anchors.fill: parent
 
     ColumnLayout {
         spacing: 2
@@ -56,10 +52,12 @@ AbstractCalendar {
             Label {
                 horizontalAlignment: Text.AlignHCenter
 
-                padding: 10
-                text: window.currentDate.toLocaleString(locale, "MMMM yyyy")
                 font.pixelSize: Qt.application.font.pixelSize * 1.25
                 width: parent.width
+
+                padding: 10
+
+                text: new Date().toLocaleString(locale, "MMMM yyyy")
             }
 
             Layout.fillWidth: true

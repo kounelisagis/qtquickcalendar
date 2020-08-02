@@ -60,15 +60,10 @@ ApplicationWindow {
     width: 1000
     height: 700
 
-    title: qsTr("Example Calendar")
     visible: true
-
-    readonly property date currentDate: new Date()
-
+    title: "Example Calendar"
 
     Calendar {
         id: calendar
-        Component.onCompleted: print(width, height)
     }
-
 }
