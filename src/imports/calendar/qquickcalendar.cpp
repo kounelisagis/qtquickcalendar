@@ -31,6 +31,7 @@
 #include "qquickcalendarmodel_p.h"
 
 #include <QtQuickTemplates2/private/qquickcontrol_p_p.h>
+#include <QtQuickTemplates2/private/qquickpage_p.h>
 
 QT_BEGIN_NAMESPACE
 
@@ -90,8 +91,7 @@ void QQuickCalendarPrivate::setContextProperty(QQuickItem *item, const QString &
 }
 
 
-QQuickCalendar::QQuickCalendar(QQuickItem *parent) :
-    QQuickControl(*(new QQuickCalendarPrivate), parent)
+QQuickCalendar::QQuickCalendar(): QQuickPage()
 {
     Q_D(QQuickCalendar);
     setFlag(ItemIsFocusScope);

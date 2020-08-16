@@ -36,104 +36,97 @@ import QtQuick.Controls.Material 2.15
 
 AbstractCalendar {
     id: control
-
     anchors.fill: parent
 
-    ColumnLayout {
-        spacing: 2
+    header: Rectangle {
+        Layout.alignment: Qt.AlignHCenter
         width: parent.width
-        height: parent.height
+        height: childrenRect.height
+        color: "steelblue"
+        Label {
+            horizontalAlignment: Text.AlignHCenter
 
-        Rectangle {
-            Layout.alignment: Qt.AlignHCenter
+            font.pixelSize: Qt.application.font.pixelSize * 1.25
             width: parent.width
-            height: childrenRect.height
-            color: "steelblue"
-            Label {
+
+            padding: 10
+
+            text: new Date().toLocaleString(locale, "MMMM yyyy")
+        }
+
+        Layout.fillWidth: true
+    }
+
+    contentItem: GridLayout {
+
+        columns: 2
+
+        DayOfWeekRow {
+            id: dayOfWeekRow
+            locale: grid.locale
+            font.bold: false
+            delegate: Label {
+                text: model.shortName
+                font: dayOfWeekRow.font
                 horizontalAlignment: Text.AlignHCenter
-
-                font.pixelSize: Qt.application.font.pixelSize * 1.25
-                width: parent.width
-
-                padding: 10
-
-                text: new Date().toLocaleString(locale, "MMMM yyyy")
+                verticalAlignment: Text.AlignVCenter
             }
 
+            Layout.column: 1
             Layout.fillWidth: true
         }
 
+        WeekNumberColumn {
+            month: grid.month
+            year: grid.year
+            locale: grid.locale
+            font.bold: false
 
-        GridLayout {
-            columns: 2
+            Layout.fillHeight: true
+        }
 
-            DayOfWeekRow {
-                id: dayOfWeekRow
-                locale: grid.locale
-                font.bold: false
-                delegate: Label {
-                    text: model.shortName
-                    font: dayOfWeekRow.font
-                    horizontalAlignment: Text.AlignHCenter
-                    verticalAlignment: Text.AlignVCenter
-                }
+        MonthGrid {
+            id: grid
 
-                Layout.column: 1
-                Layout.fillWidth: true
-            }
+            spacing: 0
 
-            WeekNumberColumn {
-                month: grid.month
-                year: grid.year
-                locale: grid.locale
-                font.bold: false
+            readonly property int gridLineThickness: 1
 
-                Layout.fillHeight: true
-            }
+            Layout.fillWidth: true
+            Layout.fillHeight: true
 
-            MonthGrid {
-                id: grid
-                
-                spacing: 0
+            background: Item {
+                x: grid.leftPadding
+                y: grid.topPadding
+                width: grid.availableWidth
+                height: grid.availableHeight
 
-                readonly property int gridLineThickness: 1
+                // Vertical lines
+                Row {
+                    spacing: (parent.width - (grid.gridLineThickness * rowRepeater.model)) / rowRepeater.model
 
-                Layout.fillWidth: true
-                Layout.fillHeight: true
-
-                background: Item {
-                    x: grid.leftPadding
-                    y: grid.topPadding
-                    width: grid.availableWidth
-                    height: grid.availableHeight
-
-                    // Vertical lines
-                    Row {
-                        spacing: (parent.width - (grid.gridLineThickness * rowRepeater.model)) / rowRepeater.model
-
-                        Repeater {
-                            id: rowRepeater
-                            model: 7
-                            delegate: Rectangle {
-                                width: 1
-                                height: grid.height
-                                color: "#ccc"
-                            }
+                    Repeater {
+                        id: rowRepeater
+                        model: 7
+                        delegate: Rectangle {
+                            width: 1
+                            height: grid.height
+                            color: "#ccc"
                         }
                     }
+                }
 
-                    // Horizontal lines
-                    Column {
-                        spacing: (parent.height - (grid.gridLineThickness * columnRepeater.model)) / columnRepeater.model
+                // Horizontal lines
+                Column {
+                    spacing: (parent.height - (grid.gridLineThickness * columnRepeater.model)) / columnRepeater.model
 
-                        Repeater {
-                            id: columnRepeater
-                            model: 6
-                            delegate: Rectangle {
-                                width: grid.width
-                                height: 1
-                                color: "#ccc"
-                            }
+                    Repeater {
+                        id: columnRepeater
+                        model: 6
+                        delegate: Rectangle {
+                            width: grid.width
+                            height: 1
+                            color: "#ccc"
                         }
                     }
                 }

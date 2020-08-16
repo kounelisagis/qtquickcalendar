@@ -44,19 +44,19 @@
 #include <QtCore/qobject.h>
 #include <QtCore/qdatetime.h>
 #include <QtQml/qqml.h>
-#include <QtQuickTemplates2/private/qquickcontrol_p.h>
+#include <QtQuickTemplates2/private/qquickpage_p.h>
 
 QT_BEGIN_NAMESPACE
 
 class QQuickCalendarPrivate;
 
 
-class QQuickCalendar : public QQuickControl
+class QQuickCalendar : public QQuickPage
 {
     Q_OBJECT
 
 public:
-    explicit QQuickCalendar(QQuickItem *parent = nullptr);
+    explicit QQuickCalendar();
 
     enum Month {
         January,
@@ -79,9 +79,6 @@ protected:
     void geometryChanged(const QRectF &newGeometry, const QRectF &oldGeometry) override;
     void paddingChange(const QMarginsF &newPadding, const QMarginsF &oldPadding) override;
     void updatePolish() override;
-
-//    void timerEvent(QTimerEvent *event) override;
-
 
 private:
     Q_DISABLE_COPY(QQuickCalendar)
