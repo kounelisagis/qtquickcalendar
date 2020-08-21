@@ -28,13 +28,12 @@
 ****************************************************************************/
 
 import QtQuick 2.15
-import QtQuick.Calendar 1.0
+import QtQuick.Templates 2.12 as T
 import QtQuick.Layouts 1.15
-
 import QtQuick.Controls 2.15
 import QtQuick.Controls.Material 2.15
 
-AbstractCalendar {
+Τ.Calendar {
     id: control
     anchors.fill: parent
 

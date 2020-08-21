@@ -1,2 +1,6 @@
 TEMPLATE = subdirs
-SUBDIRS += calendar
+SUBDIRS += \
+    calendar \
+    templates
+
+SUBDIRS += calendar/material/material.pro
