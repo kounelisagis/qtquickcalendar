@@ -1,6 +1,7 @@
 TEMPLATE = app
 TARGET = tst_calendar
 CONFIG += qmltestcase
+CONFIG-=create_cmake
 
 SOURCES += \
     $$PWD/tst_calendar.cpp

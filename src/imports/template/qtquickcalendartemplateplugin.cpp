@@ -37,62 +37,61 @@
 #include <QtQml/qqmlextensionplugin.h>
 #include <QtQml/private/qqmlglobal_p.h>
 
-#include <QtQuickTemplates2/private/qquickcalendarmodel_p.h>
-#include <QtQuickTemplates2/private/qquickcalendar_p.h>
-#include <QtQuickTemplates2/private/qquickdayofweekmodel_p.h>
-#include <QtQuickTemplates2/private/qquickdayofweekrow_p.h>
-#include <QtQuickTemplates2/private/qquickmonthgrid_p.h>
-#include <QtQuickTemplates2/private/qquickmonthmodel_p.h>
-#include <QtQuickTemplates2/private/qquickweeknumbercolumn_p.h>
-#include <QtQuickTemplates2/private/qquickweeknumbermodel_p.h>
+#include <QtQuickCalendarTemplate/private/qquickcalendar_p.h>
+#include <QtQuickCalendarTemplate/private/qquickcalendarmodel_p.h>
+#include <QtQuickCalendarTemplate/private/qquickdayofweekmodel_p.h>
+#include <QtQuickCalendarTemplate/private/qquickdayofweekrow_p.h>
+#include <QtQuickCalendarTemplate/private/qquickmonthgrid_p.h>
+#include <QtQuickCalendarTemplate/private/qquickmonthmodel_p.h>
+#include <QtQuickCalendarTemplate/private/qquickweeknumbercolumn_p.h>
+#include <QtQuickCalendarTemplate/private/qquickweeknumbermodel_p.h>
 
-#include <QtQuick/private/qquickpalette_p.h>
 
-#if QT_CONFIG(shortcut)
-// qtdeclarative/src/quick/util/qquickshortcut.cpp
-typedef bool (*ShortcutContextMatcher)(QObject *, Qt::ShortcutContext);
-extern ShortcutContextMatcher qt_quick_shortcut_context_matcher();
-extern void qt_quick_set_shortcut_context_matcher(ShortcutContextMatcher matcher);
-#endif
+//#if QT_CONFIG(shortcut)
+//// qtdeclarative/src/quick/util/qquickshortcut.cpp
+//typedef bool (*ShortcutContextMatcher)(QObject *, Qt::ShortcutContext);
+//extern ShortcutContextMatcher qt_quick_shortcut_context_matcher();
+//extern void qt_quick_set_shortcut_context_matcher(ShortcutContextMatcher matcher);
+//#endif
 
 QT_BEGIN_NAMESPACE
 
-class QtQuickTemplates2Plugin: public QQmlExtensionPlugin
+class QtQuickCalendarTemplatePlugin: public QQmlExtensionPlugin
 {
     Q_OBJECT
     Q_PLUGIN_METADATA(IID QQmlExtensionInterface_iid)
 
 public:
-    QtQuickTemplates2Plugin(QObject *parent = nullptr);
-    ~QtQuickTemplates2Plugin();
+    QtQuickCalendarTemplatePlugin(QObject *parent = nullptr);
+    ~QtQuickCalendarTemplatePlugin();
 
     void registerTypes(const char *uri) override;
-    void unregisterTypes() override;
+    void unregisterTypes();
 
 private:
     bool registered;
-#if QT_CONFIG(shortcut)
-    ShortcutContextMatcher originalContextMatcher;
-#endif
+//#if QT_CONFIG(shortcut)
+//    ShortcutContextMatcher originalContextMatcher;
+//#endif
 };
 
-QtQuickTemplates2Plugin::QtQuickTemplates2Plugin(QObject *parent)
+QtQuickCalendarTemplatePlugin::QtQuickCalendarTemplatePlugin(QObject *parent)
     : QQmlExtensionPlugin(parent), registered(false)
 {
 }
 
-QtQuickTemplates2Plugin::~QtQuickTemplates2Plugin()
+QtQuickCalendarTemplatePlugin::~QtQuickCalendarTemplatePlugin()
 {
     // Intentionally empty: we use register/unregisterTypes() to do
     // initialization and cleanup, as plugins are not unloaded on macOS.
 }
 
-void QtQuickTemplates2Plugin::registerTypes(const char *uri)
+void QtQuickCalendarTemplatePlugin::registerTypes(const char *uri)
 {
-#if QT_CONFIG(shortcut)
-    originalContextMatcher = qt_quick_shortcut_context_matcher();
-    qt_quick_set_shortcut_context_matcher(QQuickShortcutContext::matcher);
-#endif
+//#if QT_CONFIG(shortcut)
+//    originalContextMatcher = qt_quick_shortcut_context_matcher();
+//    qt_quick_set_shortcut_context_matcher(QQuickShortcutContext::matcher);
+//#endif
 
     registered = true;
 
@@ -109,13 +108,13 @@ void QtQuickTemplates2Plugin::registerTypes(const char *uri)
 
 }
 
-void QtQuickTemplates2Plugin::unregisterTypes()
+void QtQuickCalendarTemplatePlugin::unregisterTypes()
 {
-#if QT_CONFIG(shortcut)
-    qt_quick_set_shortcut_context_matcher(originalContextMatcher);
-#endif
+//#if QT_CONFIG(shortcut)
+//    qt_quick_set_shortcut_context_matcher(originalContextMatcher);
+//#endif
 }
 
 QT_END_NAMESPACE
 
-#include "qtquicktemplates2plugin.moc"
+#include "qtquickcalendartemplateplugin.moc"

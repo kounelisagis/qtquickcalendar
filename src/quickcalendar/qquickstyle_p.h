@@ -3,7 +3,7 @@
 ** Copyright (C) 2017 The Qt Company Ltd.
 ** Contact: http://www.qt.io/licensing/
 **
-** This file is part of the Qt Quick Templates 2 module of the Qt Toolkit.
+** This file is part of the Qt Quick Controls 2 module of the Qt Toolkit.
 **
 ** $QT_BEGIN_LICENSE:LGPL3$
 ** Commercial License Usage
@@ -34,8 +34,8 @@
 **
 ****************************************************************************/
 
-#ifndef QTQUICKTEMPLATES2GLOBAL_P_H
-#define QTQUICKTEMPLATES2GLOBAL_P_H
+#ifndef QQUICKSTYLE_P_H
+#define QQUICKSTYLE_P_H
 
 //
 //  W A R N I N G
@@ -48,22 +48,29 @@
 // We mean it.
 //
 
-#include <QtCore/qglobal.h>
-#include <QtQml/private/qqmlglobal_p.h>
-#include <QtQuickTemplates2/private/qtquicktemplates2-config_p.h>
+#include <QtCore/qurl.h>
+#include <QtCore/qsharedpointer.h>
+#include <QtQuickCalendar/private/qtquickcalendarglobal_p.h>
 
 QT_BEGIN_NAMESPACE
 
-#ifndef QT_STATIC
-#  if defined(QT_BUILD_QUICKTEMPLATES2_LIB)
-#    define Q_QUICKTEMPLATES2_PRIVATE_EXPORT Q_DECL_EXPORT
-#  else
-#    define Q_QUICKTEMPLATES2_PRIVATE_EXPORT Q_DECL_IMPORT
-#  endif
-#else
-#  define Q_QUICKTEMPLATES2_PRIVATE_EXPORT
-#endif
+class QSettings;
+
+class Q_QUICKCONTROLS2_PRIVATE_EXPORT QQuickStylePrivate
+{
+public:
+    static QStringList stylePaths(bool resolve = false);
+    static QString fallbackStyle();
+    static bool isCustomStyle();
+    static void init(const QUrl &baseUrl);
+    static void reset();
+    static QString configFilePath();
+    static QSharedPointer<QSettings> settings(const QString &group = QString());
+    static const QFont *readFont(const QSharedPointer<QSettings> &settings);
+    static const QPalette *readPalette(const QSharedPointer<QSettings> &settings);
+    static bool isDarkSystemTheme();
+};
 
 QT_END_NAMESPACE
 
-#endif // QTQUICKTEMPLATES2GLOBAL_P_H
+#endif // QQUICKSTYLE_P_H

@@ -3,7 +3,7 @@
 ** Copyright (C) 2017 The Qt Company Ltd.
 ** Contact: http://www.qt.io/licensing/
 **
-** This file is part of the Qt Quick Controls 2 module of the Qt Toolkit.
+** This file is part of the Qt Quick Templates 2 module of the Qt Toolkit.
 **
 ** $QT_BEGIN_LICENSE:LGPL3$
 ** Commercial License Usage
@@ -34,8 +34,8 @@
 **
 ****************************************************************************/
 
-#ifndef QQUICKSTYLE_P_H
-#define QQUICKSTYLE_P_H
+#ifndef QTQUICKCALENDARTEMPLATEGLOBAL_P_H
+#define QTQUICKCALENDARTEMPLATEGLOBAL_P_H
 
 //
 //  W A R N I N G
@@ -48,29 +48,22 @@
 // We mean it.
 //
 
-#include <QtCore/qurl.h>
-#include <QtCore/qsharedpointer.h>
-#include <QtQuickControls2/private/qtquickcontrols2global_p.h>
+#include <QtCore/qglobal.h>
+#include <QtQml/private/qqmlglobal_p.h>
+#include <QtQuickTemplates2/private/qtquicktemplates2-config_p.h>
 
 QT_BEGIN_NAMESPACE
 
-class QSettings;
-
-class Q_QUICKCONTROLS2_PRIVATE_EXPORT QQuickStylePrivate
-{
-public:
-    static QStringList stylePaths(bool resolve = false);
-    static QString fallbackStyle();
-    static bool isCustomStyle();
-    static void init(const QUrl &baseUrl);
-    static void reset();
-    static QString configFilePath();
-    static QSharedPointer<QSettings> settings(const QString &group = QString());
-    static const QFont *readFont(const QSharedPointer<QSettings> &settings);
-    static const QPalette *readPalette(const QSharedPointer<QSettings> &settings);
-    static bool isDarkSystemTheme();
-};
+#ifndef QT_STATIC
+#  if defined(QT_BUILD_QUICKCALENDARTEMPLATE_LIB)
+#    define Q_QUICKCALENDARTEMPLATE_PRIVATE_EXPORT Q_DECL_EXPORT
+#  else
+#    define Q_QUICKCALENDARTEMPLATE_PRIVATE_EXPORT Q_DECL_IMPORT
+#  endif
+#else
+#  define Q_QUICKCALENDARTEMPLATE_PRIVATE_EXPORT
+#endif
 
 QT_END_NAMESPACE
 
-#endif // QQUICKSTYLE_P_H
+#endif // QTQUICKCALENDARTEMPLATEGLOBAL_P_H

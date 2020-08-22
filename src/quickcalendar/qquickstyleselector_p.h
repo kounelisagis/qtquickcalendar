@@ -38,8 +38,8 @@
 **
 ****************************************************************************/
 
-#ifndef QQUICKSTYLESELECTOR_P_P_H
-#define QQUICKSTYLESELECTOR_P_P_H
+#ifndef QQUICKSTYLESELECTOR_P_H
+#define QQUICKSTYLESELECTOR_P_H
 
 //
 //  W A R N I N G
@@ -52,19 +52,35 @@
 // We mean it.
 //
 
-#include <QtQuickControls2/private/qquickstyleselector_p.h>
+#include <QtCore/qurl.h>
+#include <QtCore/qstring.h>
+#include <QtCore/qscopedpointer.h>
+#include <QtQuickCalendar/private/qtquickcalendarglobal_p.h>
 
 QT_BEGIN_NAMESPACE
 
-class QQuickStyleSelectorPrivate
+class QQuickStyleSelectorPrivate;
+
+class Q_QUICKCONTROLS2_PRIVATE_EXPORT QQuickStyleSelector
 {
 public:
-    QUrl select(const QString &filePath) const;
+    QQuickStyleSelector();
+    ~QQuickStyleSelector();
 
-    QStringList paths;
-    QStringList selectors;
+    QStringList selectors() const;
+    void addSelector(const QString &selector);
+
+    QStringList paths() const;
+    void setPaths(const QStringList &paths);
+
+    QUrl select(const QString &fileName) const;
+
+private:
+    Q_DISABLE_COPY(QQuickStyleSelector)
+    Q_DECLARE_PRIVATE(QQuickStyleSelector)
+    QScopedPointer<QQuickStyleSelectorPrivate> d_ptr;
 };
 
 QT_END_NAMESPACE
 
-#endif // QQUICKSTYLESELECTOR_P_P_H
+#endif // QQUICKSTYLESELECTOR_P_H

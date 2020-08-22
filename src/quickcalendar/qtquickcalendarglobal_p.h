@@ -34,8 +34,8 @@
 **
 ****************************************************************************/
 
-#ifndef QTQUICKCONTROLS2GLOBAL_P_H
-#define QTQUICKCONTROLS2GLOBAL_P_H
+#ifndef QTQUICKCALENDARGLOBAL_P_H
+#define QTQUICKCALENDARGLOBAL_P_H
 
 //
 //  W A R N I N G
@@ -48,9 +48,9 @@
 // We mean it.
 //
 
-#include <QtQuickControls2/qtquickcontrols2global.h>
-#include <QtQuickControls2/private/qtquickcontrols2-config_p.h>
+#include <QtQuickCalendar/qtquickcalendarglobal.h>
+//#include <QtQuickCalendar/qtquickcalendar-config_p.h>
 
-#define Q_QUICKCONTROLS2_PRIVATE_EXPORT Q_QUICKCONTROLS2_EXPORT
+#define Q_QUICKCALENDAR_PRIVATE_EXPORT Q_QUICKCALENDAR_EXPORT
 
-#endif // QTQUICKCONTROLS2GLOBAL_P_H
+#endif // QTQUICKCALENDARGLOBAL_P_H

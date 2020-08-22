@@ -49,7 +49,7 @@
 //
 
 #include <QtQml/qqmlextensionplugin.h>
-#include <QtQuickControls2/private/qtquickcontrols2global_p.h>
+#include <QtQuickCalendar/private/qtquickcalendarglobal_p.h>
 
 QT_BEGIN_NAMESPACE
 
